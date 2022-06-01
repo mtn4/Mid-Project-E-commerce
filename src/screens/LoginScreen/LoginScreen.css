@@ -1,0 +1,86 @@
+.login-page {
+  background-color: rgb(240, 242, 244);
+  border-bottom: 1px solid #c5cbd5;
+  border-top: 1px solid #c5cbd5;
+  min-height: 50vh;
+  padding: 50px 0;
+}
+.login-container {
+  width: 345px;
+  padding: 25px;
+  margin: auto;
+  border: 1px solid #e0e6ef;
+  border-radius: 4px;
+  background-color: white;
+}
+.login-container > form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 25px;
+}
+.form-submit-btn {
+  height: 45px;
+  background-color: rgb(0, 71, 179);
+  border-radius: 4px;
+  border-width: 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+  width: 100%;
+}
+.login-logo {
+  font-size: 20px;
+  text-align: center;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+hr {
+  margin: 20px 0;
+  background-color: rgba(0, 0, 0, 0);
+  border-bottom-width: 0px;
+  border-left-width: 0px;
+  border-right-width: 0px;
+  border-top-color: rgb(231, 231, 231);
+  border-top-style: solid;
+  border-top-width: 1px;
+  box-sizing: border-box;
+  color: rgb(128, 128, 128);
+  display: block;
+  font-family: "Amazon Ember", Arial, sans-serif;
+  font-size: 14px;
+  height: 1px;
+  line-height: 19px;
+  overflow-x: visible;
+  overflow-y: visible;
+  padding-bottom: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-top: 0px;
+}
+.login-container input {
+  height: 45px;
+  width: 100%;
+  padding: 0 12px;
+  border-radius: 4px;
+  border: 1px solid #90959e;
+}
+.login-container ::placeholder {
+  color: rgb(0, 0, 0);
+  opacity: 1;
+  font-size: 15px;
+  font-weight: 600;
+}
+.login-small {
+  font-size: 13px;
+  font-weight: 600;
+}
+.login-small a {
+  text-decoration: none;
+}
+.login-error {
+  color: red;
+  font-size: 14px;
+  font-weight: 600;
+}
