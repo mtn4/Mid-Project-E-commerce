@@ -1,0 +1,29 @@
+.product-container {
+  margin: 20px;
+  border: 1px solid gainsboro;
+  font-family: SuisseIntl-Regular;
+  font-size: 16px;
+  border-radius: 8px;
+  background-color: white;
+  padding: 15px;
+}
+.product-image {
+  height: 30vh;
+  width: 20vw;
+}
+.brand {
+  color: gray;
+  font-weight: 400;
+}
+.product-details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-left: 5px;
+  padding-top: 10px;
+  font-size: 14px;
+  font-weight: 600;
+}
+.price {
+  font-size: 24px;
+}

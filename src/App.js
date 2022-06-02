@@ -24,11 +24,11 @@ export default function App() {
               <Route path="/" exact component={HomeScreen} />
               <Route path="/products" exact component={ProductListScreen} />
               <Route path="/products/:id" component={ProductScreen} />
-              <Route path={`/:name`} component={ProductListScreen} />
               <Route path="/login" exact component={LoginScreen} />
               <Route path="/register" exact component={RegisterScreen} />
               <Route path="/cart" exact component={CartScreen} />
               <Route path="/orders" exact component={OrderScreen} />
+              <Route path={`/:name`} component={ProductListScreen} />
               <Route component={ErrorScreen} />
             </Switch>
           </BrowserRouter>

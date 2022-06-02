@@ -4,12 +4,15 @@ export const productsContext = createContext();
 
 function ContextProvider({ children }) {
   const [productsArr, setProductsArr] = useState([]);
+  const [cartArr, setCartArr] = useState([]);
 
   return (
     <productsContext.Provider
       value={{
         productsArr,
         setProductsArr,
+        cartArr,
+        setCartArr,
       }}
     >
       {children}

@@ -4,6 +4,7 @@ import { productsContext } from "../../contexts/productsContext";
 import api from "../../apis/api";
 import CircleLoader from "react-spinners/CircleLoader";
 import Product from "../../components/Product/Product";
+import "./ProductListScreen.css";
 
 export default function ProductListScreen(props) {
   const [loading, setLoading] = useState(true);
@@ -12,17 +13,12 @@ export default function ProductListScreen(props) {
     setLoading(true);
     (async () => {
       const data = await api.get();
-      // console.log(data.data);
       setProductsArr(data.data);
       setLoading(false);
     })();
   }, [setProductsArr]);
 
   const renderProducts = () => {
-    // console.log(props.match.params.name);
-    // if (props.match.params.name) {
-
-    // }
     return productsArr
       .filter((product) => {
         if (props.match.params.name) {
@@ -50,15 +46,56 @@ export default function ProductListScreen(props) {
       ));
   };
 
+  const paramTitle = (str) => {
+    if (str.trim().indexOf(" ") !== -1) {
+      const arr = str.split(" ");
+      for (var i = 0; i < arr.length; i++) {
+        arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1);
+      }
+      const str2 = arr.join(" ");
+      return str2;
+    }
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  };
+
+  const getPageTitle = () => {
+    let title = "All Products";
+    if (props.match.params.name) {
+      switch (props.match.params.name) {
+        case "audio":
+          title = "Audio";
+          break;
+        case "cellphones":
+          title = "Cellphones";
+          break;
+        case "computers":
+          title = "Computers";
+          break;
+        case "videogames":
+          title = "Video Games";
+          break;
+        default:
+          title = paramTitle(props.match.params.name);
+          break;
+      }
+    }
+    return title;
+  };
+
   return (
     <div className="products-page-container">
-      {loading ? (
-        <div className="spinner">
-          <CircleLoader color={"blue"} loading={true} size={200} />
-        </div>
-      ) : (
-        <div className="products-container">{renderProducts()}</div>
-      )}
+      <div className="products-page">
+        {loading ? (
+          <div className="spinner">
+            <CircleLoader color={"blue"} loading={true} size={200} />
+          </div>
+        ) : (
+          <>
+            <div className="products-page-title">{getPageTitle()}</div>
+            <div className="products-container">{renderProducts()}</div>
+          </>
+        )}
+      </div>
     </div>
   );
 }

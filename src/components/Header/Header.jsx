@@ -1,14 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./Header.css";
 import { Link, useHistory } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
+import { productsContext } from "../../contexts/productsContext";
 import { FiSearch, FiLogOut } from "react-icons/fi";
-import { BsFillPersonFill } from "react-icons/bs";
-import { AiOutlineShoppingCart } from "react-icons/ai";
+import { BsFillPersonFill, BsFillCartFill } from "react-icons/bs";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { RiArrowRightSLine } from "react-icons/ri";
 
 export default function Header() {
+  const { cartArr } = useContext(productsContext);
   const [error, setError] = useState("");
   const [display, setDisplay] = useState("none");
   const [searchTerm, setSearchTerm] = useState("");
@@ -37,129 +38,138 @@ export default function Header() {
     }
   }
   return (
-    <div className="navbar">
-      <div className="hamburger-container">
-        <div className="hamburger-menu-flyout" style={{ display: display }}>
-          <div className="hamburger-menu-flyout-list-wrapper">
-            <div className="hamburger-list">
-              <Link to="/products">
+    <div className="navbar-container">
+      <div className="navbar">
+        <div className="hamburger-container">
+          <div className="hamburger-menu-flyout" style={{ display: display }}>
+            <div className="hamburger-menu-flyout-list-wrapper">
+              <div className="hamburger-list">
+                <Link to="/products">
+                  <div
+                    className="hamburger-list-item"
+                    onClick={handleHamburgerClick}
+                  >
+                    <div className="product-category">All Products</div>
+                    <div className="arrow-right">
+                      <RiArrowRightSLine />
+                    </div>
+                  </div>
+                </Link>
                 <div
                   className="hamburger-list-item"
-                  onClick={handleHamburgerClick}
+                  style={{ fontWeight: 700 }}
                 >
-                  <div className="product-category">All Products</div>
-                  <div className="arrow-right">
-                    <RiArrowRightSLine />
-                  </div>
+                  Shop By Department
                 </div>
-              </Link>
-              <div className="hamburger-list-item" style={{ fontWeight: 700 }}>
-                Shop By Department
+                <Link to="/audio">
+                  <div
+                    className="hamburger-list-item"
+                    onClick={handleHamburgerClick}
+                  >
+                    <div className="product-category">Audio</div>
+                    <div className="arrow-right">
+                      <RiArrowRightSLine />
+                    </div>
+                  </div>
+                </Link>
+                <Link to="/cellphones">
+                  <div
+                    className="hamburger-list-item"
+                    onClick={handleHamburgerClick}
+                  >
+                    <div className="product-category">Cellphones</div>
+                    <div className="arrow-right">
+                      <RiArrowRightSLine />
+                    </div>
+                  </div>
+                </Link>
+                <Link to="/computers">
+                  <div
+                    className="hamburger-list-item"
+                    onClick={handleHamburgerClick}
+                  >
+                    <div className="product-category">Computers</div>
+                    <div className="arrow-right">
+                      <RiArrowRightSLine />
+                    </div>
+                  </div>
+                </Link>
+                <Link to="/videogames">
+                  <div
+                    className="hamburger-list-item"
+                    onClick={handleHamburgerClick}
+                  >
+                    <div className="product-category">Video Games</div>
+                    <div className="arrow-right">
+                      <RiArrowRightSLine />
+                    </div>
+                  </div>
+                </Link>
               </div>
-              <Link to="/audio">
-                <div
-                  className="hamburger-list-item"
-                  onClick={handleHamburgerClick}
-                >
-                  <div className="product-category">Audio</div>
-                  <div className="arrow-right">
-                    <RiArrowRightSLine />
-                  </div>
-                </div>
+            </div>
+          </div>
+          <div
+            className="c-overlay-backdrop"
+            style={{ display: display }}
+          ></div>
+        </div>
+        <div
+          onClick={handleHamburgerClick}
+          className={`hamburger ${display === "block" ? "is-active" : ""}`}
+        >
+          <GiHamburgerMenu />
+        </div>
+        <div className="logo">
+          <Link to="/">BuyNow</Link>
+        </div>
+        <div className="search-inner">
+          <div className="search-bar">
+            <input
+              onChange={handleInputChange}
+              onKeyPress={handleEnter}
+              value={searchTerm}
+              type="search"
+            />
+          </div>
+          <div className="search-button">
+            <button>
+              <Link to={`/${searchTerm}`}>
+                <FiSearch />
               </Link>
-              <Link to="/cellphones">
-                <div
-                  className="hamburger-list-item"
-                  onClick={handleHamburgerClick}
-                >
-                  <div className="product-category">Cellphones</div>
-                  <div className="arrow-right">
-                    <RiArrowRightSLine />
-                  </div>
-                </div>
-              </Link>
-              <Link to="/computers">
-                <div
-                  className="hamburger-list-item"
-                  onClick={handleHamburgerClick}
-                >
-                  <div className="product-category">Computers</div>
-                  <div className="arrow-right">
-                    <RiArrowRightSLine />
-                  </div>
-                </div>
-              </Link>
-              <Link to="/videogames">
-                <div
-                  className="hamburger-list-item"
-                  onClick={handleHamburgerClick}
-                >
-                  <div className="product-category">Video Games</div>
-                  <div className="arrow-right">
-                    <RiArrowRightSLine />
-                  </div>
-                </div>
-              </Link>
+            </button>
+          </div>
+        </div>
+        <div className="user-container">
+          <span className="face">
+            <BsFillPersonFill />
+          </span>
+          <div>
+            <div className="welcome">Welcome</div>
+            <div className="user">
+              {currentUser ? (
+                <>
+                  <Link to="/orders">{currentUser.multiFactor.user.email}</Link>
+                </>
+              ) : (
+                <Link to="/login">Sign In / Register</Link>
+              )}
             </div>
           </div>
         </div>
-        <div className="c-overlay-backdrop" style={{ display: display }}></div>
-      </div>
-      <div
-        onClick={handleHamburgerClick}
-        className={`hamburger ${display === "block" ? "is-active" : ""}`}
-      >
-        <GiHamburgerMenu />
-      </div>
-      <div className="logo">
-        <Link to="/">BuyNow</Link>
-      </div>
-      <div className="search-inner">
-        <div className="search-bar">
-          <input
-            onChange={handleInputChange}
-            onKeyPress={handleEnter}
-            value={searchTerm}
-            type="search"
-          />
+        <div
+          className="log-out"
+          style={{ display: currentUser ? "block" : "none" }}
+        >
+          <Link to="/" onClick={handleLogout}>
+            <FiLogOut />
+          </Link>
         </div>
-        <div className="search-button">
-          <button>
-            <Link to={`/${searchTerm}`}>
-              <FiSearch />
-            </Link>
-          </button>
+        <div className="cart">
+          <Link to="/cart">
+            <BsFillCartFill />
+          </Link>
+          <div className="cart-amount">{cartArr.length}</div>
         </div>
-      </div>
-      <div className="user-container">
-        <span className="face">
-          <BsFillPersonFill />
-        </span>
-        <div>
-          <div className="welcome">Welcome</div>
-          <div className="user">
-            {currentUser ? (
-              <>
-                <Link to="/orders">{currentUser.multiFactor.user.email}</Link>
-              </>
-            ) : (
-              <Link to="/login">Sign In / Register</Link>
-            )}
-          </div>
-        </div>
-      </div>
-      <div
-        className="log-out"
-        style={{ display: currentUser ? "block" : "none" }}
-      >
-        <Link to="/" onClick={handleLogout}>
-          <FiLogOut />
-        </Link>
-      </div>
-      <div className="cart">
-        <Link to="/cart">
-          <AiOutlineShoppingCart />
-        </Link>
       </div>
     </div>
   );
