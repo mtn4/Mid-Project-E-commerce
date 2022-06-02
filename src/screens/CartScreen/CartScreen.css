@@ -1,0 +1,68 @@
+.cart-page-container {
+  min-height: 60vh;
+  background-color: #f7f7f7;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+.cart-page {
+  max-width: 1500px;
+  margin: auto;
+  display: flex;
+  gap: 50px;
+  justify-content: space-between;
+}
+.cart-page-title {
+  color: rgb(9, 20, 79);
+  font-size: 28px;
+  font-weight: 900;
+  padding: 0 25px;
+  padding-top: 15px;
+  font-family: "Montserrat", sans-serif;
+}
+.cart-left {
+  padding: 30px 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.cart-right {
+  background-color: white;
+  width: 450px;
+  border-left: 1px solid #e0e6ef;
+  border-right: 1px solid #e0e6ef;
+  padding: 20px;
+}
+.item-total,
+.shipping,
+.tax,
+.total {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  line-height: 20px;
+}
+.summary {
+  text-align: center;
+  font-size: 20px;
+  font-weight: 600;
+}
+.total {
+  font-size: 17px;
+  font-weight: 700;
+}
+.checkout-btn,
+.sign-btn {
+  margin: 30px 0;
+  width: 100%;
+  height: 45px;
+  background-color: rgb(255, 224, 0);
+  border-radius: 4px;
+  border: none;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.sign-btn {
+  background-color: rgb(255, 0, 0);
+  color: white;
+}
