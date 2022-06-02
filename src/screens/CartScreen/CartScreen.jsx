@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
 import { productsContext } from "../../contexts/productsContext";
 import api from "../../apis/api";
 import CircleLoader from "react-spinners/CircleLoader";
@@ -7,8 +6,7 @@ import "./CartScreen.css";
 
 export default function CartScreen() {
   const [loading, setLoading] = useState(true);
-  const { productsArr, setProductsArr, cartObj, setCartObj } =
-    useContext(productsContext);
+  const { setProductsArr, cartObj } = useContext(productsContext);
   useEffect(() => {
     setLoading(true);
     (async () => {
