@@ -47,30 +47,6 @@ export default function ProductListScreen(props) {
       ));
   };
 
-  // const getPageTitle = () => {
-  //   let title = "All Products";
-  //   if (props.match.params.name) {
-  //     switch (props.match.params.name) {
-  //       case "audio":
-  //         title = "Audio";
-  //         break;
-  //       case "cellphones":
-  //         title = "Cellphones";
-  //         break;
-  //       case "computers":
-  //         title = "Computers";
-  //         break;
-  //       case "videogames":
-  //         title = "Video Games";
-  //         break;
-  //       default:
-  //         title = paramTitle(props.match.params.name);
-  //         break;
-  //     }
-  //   }
-  //   return title;
-  // };
-
   return (
     <div className="products-page-container">
       <div className="products-page">

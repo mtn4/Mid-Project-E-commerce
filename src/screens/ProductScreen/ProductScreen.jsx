@@ -1,25 +1,37 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { productsContext } from "../../contexts/productsContext";
+import { useAuth } from "../../contexts/AuthContext";
 import api from "../../apis/api";
+import wishlist from "../../apis/wishlist";
 import CircleLoader from "react-spinners/CircleLoader";
 import "./ProductScreen.css";
 import getPageTitle from "../../utils/getPageTitle";
+import { AiFillHeart } from "react-icons/ai";
 
 export default function ProductScreen(props) {
   const [loading, setLoading] = useState(true);
   const [quantity, setQuantity] = useState(1);
-  const { productsArr, setProductsArr, cartObj, setCartObj } =
-    useContext(productsContext);
+  const {
+    wishListObj,
+    setWishListObj,
+    productsArr,
+    setProductsArr,
+    cartObj,
+    setCartObj,
+  } = useContext(productsContext);
+  const { currentUser } = useAuth();
   let productIndex = props.match.params.id - 1;
   useEffect(() => {
     setLoading(true);
     (async () => {
       const data = await api.get();
       setProductsArr(data.data);
+      const wishData = await wishlist.get();
+      setWishListObj(wishData.data);
       setLoading(false);
     })();
-  }, [setProductsArr]);
+  }, [setProductsArr, setWishListObj]);
   const handleQuantityChange = (e) => {
     setQuantity(e.target.value);
   };
@@ -42,6 +54,41 @@ export default function ProductScreen(props) {
         total: cartObj.total + parseInt(quantity),
       });
       setQuantity(1);
+    }
+  };
+  const handleAddWishlist = () => {
+    const userEmail = currentUser.multiFactor.user.email;
+    if (wishListObj[0].wishlist[userEmail]) {
+      if (!wishListObj[0].wishlist[userEmail].includes(productIndex)) {
+        let newWishListObj = [...wishListObj];
+        newWishListObj[0].wishlist[userEmail].push(productIndex);
+        setLoading(true);
+        (async () => {
+          await wishlist.put("1", newWishListObj[0]);
+          setWishListObj(newWishListObj);
+          setLoading(false);
+        })();
+      } else {
+        let newWishListObj = [...wishListObj];
+        const index =
+          newWishListObj[0].wishlist[userEmail].indexOf(productIndex);
+        newWishListObj[0].wishlist[userEmail].splice(index, 1);
+        setLoading(true);
+        (async () => {
+          await wishlist.put("1", newWishListObj[0]);
+          setWishListObj(newWishListObj);
+          setLoading(false);
+        })();
+      }
+    } else {
+      let newWishListObj = [...wishListObj];
+      newWishListObj[0].wishlist[userEmail] = [productIndex];
+      setLoading(true);
+      (async () => {
+        await wishlist.put("1", newWishListObj[0]);
+        setWishListObj(newWishListObj);
+        setLoading(false);
+      })();
     }
   };
   return (
@@ -84,19 +131,29 @@ export default function ProductScreen(props) {
               <div className="product-page-description">
                 {productsArr[productIndex].description}
               </div>
-              <div className="product-price-container">
-                <div className="product-page-price">
-                  <div className="quantity">
-                    <span>Qty: </span>
-                    <input
-                      value={quantity}
-                      onChange={handleQuantityChange}
-                      type="number"
-                    />
+              <div className="product-page-footer">
+                <div className="product-price-container">
+                  <div className="product-page-price">
+                    <div className="quantity">
+                      <span>Qty: </span>
+                      <input
+                        value={quantity}
+                        min="1"
+                        onChange={handleQuantityChange}
+                        type="number"
+                      />
+                    </div>
+                    {productsArr[productIndex].price}
                   </div>
-                  {productsArr[productIndex].price}
+                  <button onClick={handleAddToCart}>Add to Cart</button>
                 </div>
-                <button onClick={handleAddToCart}>Add to Cart</button>
+                {currentUser ? (
+                  <div className="add-wishlist-btn" onClick={handleAddWishlist}>
+                    <AiFillHeart />
+                  </div>
+                ) : (
+                  ""
+                )}
               </div>
             </div>
           </>

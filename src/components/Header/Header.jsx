@@ -7,6 +7,7 @@ import { FiSearch, FiLogOut } from "react-icons/fi";
 import { BsFillPersonFill, BsFillCartFill } from "react-icons/bs";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { RiArrowRightSLine } from "react-icons/ri";
+import { AiFillHeart } from "react-icons/ai";
 
 export default function Header() {
   const { cartObj } = useContext(productsContext);
@@ -164,7 +165,14 @@ export default function Header() {
             <FiLogOut />
           </Link>
         </div>
-
+        <div
+          className="log-out"
+          style={{ display: currentUser ? "block" : "none" }}
+        >
+          <Link to="/wishlist">
+            <AiFillHeart />
+          </Link>
+        </div>
         <div className="cart">
           <Link to="/cart">
             <BsFillCartFill />

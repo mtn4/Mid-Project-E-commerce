@@ -5,6 +5,7 @@ export const productsContext = createContext();
 function ContextProvider({ children }) {
   const [productsArr, setProductsArr] = useState([]);
   const [cartObj, setCartObj] = useState({ total: 0 });
+  const [wishListObj, setWishListObj] = useState([]);
   useEffect(() => {
     const cartObjData = JSON.parse(localStorage.getItem("cartObj"));
 
@@ -19,6 +20,8 @@ function ContextProvider({ children }) {
         setProductsArr,
         cartObj,
         setCartObj,
+        wishListObj,
+        setWishListObj,
       }}
     >
       {children}
