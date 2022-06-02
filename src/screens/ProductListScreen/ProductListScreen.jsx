@@ -5,6 +5,7 @@ import api from "../../apis/api";
 import CircleLoader from "react-spinners/CircleLoader";
 import Product from "../../components/Product/Product";
 import "./ProductListScreen.css";
+import getPageTitle from "../../utils/getPageTitle";
 
 export default function ProductListScreen(props) {
   const [loading, setLoading] = useState(true);
@@ -46,41 +47,29 @@ export default function ProductListScreen(props) {
       ));
   };
 
-  const paramTitle = (str) => {
-    if (str.trim().indexOf(" ") !== -1) {
-      const arr = str.split(" ");
-      for (var i = 0; i < arr.length; i++) {
-        arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1);
-      }
-      const str2 = arr.join(" ");
-      return str2;
-    }
-    return str.charAt(0).toUpperCase() + str.slice(1);
-  };
-
-  const getPageTitle = () => {
-    let title = "All Products";
-    if (props.match.params.name) {
-      switch (props.match.params.name) {
-        case "audio":
-          title = "Audio";
-          break;
-        case "cellphones":
-          title = "Cellphones";
-          break;
-        case "computers":
-          title = "Computers";
-          break;
-        case "videogames":
-          title = "Video Games";
-          break;
-        default:
-          title = paramTitle(props.match.params.name);
-          break;
-      }
-    }
-    return title;
-  };
+  // const getPageTitle = () => {
+  //   let title = "All Products";
+  //   if (props.match.params.name) {
+  //     switch (props.match.params.name) {
+  //       case "audio":
+  //         title = "Audio";
+  //         break;
+  //       case "cellphones":
+  //         title = "Cellphones";
+  //         break;
+  //       case "computers":
+  //         title = "Computers";
+  //         break;
+  //       case "videogames":
+  //         title = "Video Games";
+  //         break;
+  //       default:
+  //         title = paramTitle(props.match.params.name);
+  //         break;
+  //     }
+  //   }
+  //   return title;
+  // };
 
   return (
     <div className="products-page-container">
@@ -91,7 +80,9 @@ export default function ProductListScreen(props) {
           </div>
         ) : (
           <>
-            <div className="products-page-title">{getPageTitle()}</div>
+            <div className="products-page-title">
+              {getPageTitle(props.match.params.name)}
+            </div>
             <div className="products-container">{renderProducts()}</div>
           </>
         )}

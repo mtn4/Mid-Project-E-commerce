@@ -246,9 +246,9 @@
 .cart-amount {
   position: absolute;
   width: 24px;
-  top: 11.5px;
+  top: 13px;
   left: 15.5px;
-  font-size: 14px;
+  font-size: 12px;
   color: white;
   text-align: center;
 }

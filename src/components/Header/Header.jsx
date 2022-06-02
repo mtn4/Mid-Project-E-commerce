@@ -164,11 +164,12 @@ export default function Header() {
             <FiLogOut />
           </Link>
         </div>
+
         <div className="cart">
           <Link to="/cart">
             <BsFillCartFill />
+            <div className="cart-amount">{cartArr.length}</div>
           </Link>
-          <div className="cart-amount">{cartArr.length}</div>
         </div>
       </div>
     </div>
