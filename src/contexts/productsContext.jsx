@@ -1,18 +1,24 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 
 export const productsContext = createContext();
 
 function ContextProvider({ children }) {
   const [productsArr, setProductsArr] = useState([]);
-  const [cartArr, setCartArr] = useState([]);
+  const [cartObj, setCartObj] = useState({ total: 0 });
+  useEffect(() => {
+    const cartObjData = JSON.parse(localStorage.getItem("cartObj"));
 
+    if (cartObjData) {
+      setCartObj(cartObjData);
+    }
+  }, []);
   return (
     <productsContext.Provider
       value={{
         productsArr,
         setProductsArr,
-        cartArr,
-        setCartArr,
+        cartObj,
+        setCartObj,
       }}
     >
       {children}

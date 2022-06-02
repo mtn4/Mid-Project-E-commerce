@@ -9,7 +9,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { RiArrowRightSLine } from "react-icons/ri";
 
 export default function Header() {
-  const { cartArr } = useContext(productsContext);
+  const { cartObj } = useContext(productsContext);
   const [error, setError] = useState("");
   const [display, setDisplay] = useState("none");
   const [searchTerm, setSearchTerm] = useState("");
@@ -168,7 +168,7 @@ export default function Header() {
         <div className="cart">
           <Link to="/cart">
             <BsFillCartFill />
-            <div className="cart-amount">{cartArr.length}</div>
+            <div className="cart-amount">{cartObj.total}</div>
           </Link>
         </div>
       </div>
