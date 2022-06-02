@@ -1,5 +1,9 @@
 import React from "react";
-
+import "./HomeScreen.css";
 export default function HomeScreen() {
-  return <div>HomeScreen</div>;
+  return (
+    <div className="home-container">
+      <div>Home</div>
+    </div>
+  );
 }

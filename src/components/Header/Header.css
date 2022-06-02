@@ -6,30 +6,17 @@
   gap: 20px;
   height: 82px;
   padding: 15px 20px;
-  max-width: 1600px;
+  max-width: 1500px;
   margin: auto;
+  position: relative;
+  border-bottom: 1px solid rgb(0, 71, 179);
 }
 .logo a {
-  font-size: 36px;
+  font-size: 42px;
   font-family: "Audiowide", cursive;
   color: rgb(0, 71, 179);
   text-shadow: 0 2px rgb(0, 0, 0);
   text-decoration: none;
-}
-.navbar-products {
-  padding: 12px;
-  background-color: rgb(0, 71, 179);
-  border-radius: 5px;
-  transition: scale 0.2s;
-}
-.navbar-products a {
-  color: white;
-  font-size: 16px;
-  font-weight: 500;
-  text-decoration: none;
-}
-.navbar-products:hover {
-  scale: 1.1;
 }
 .search-inner {
   position: relative;
@@ -52,6 +39,9 @@
   flex: 1 1 auto;
   position: relative;
 }
+.search-bar input {
+  font-size: 16px;
+}
 .search-bar [type="search"] {
   appearance: none;
   padding: 0 40px 0 15px;
@@ -68,9 +58,10 @@
   padding: 0 22px;
   font-size: 24px;
   border: none;
-  color: white;
   background-color: rgb(0, 71, 179);
-  cursor: pointer;
+}
+.search-button > button a {
+  color: white;
 }
 .user-container {
   display: flex;
@@ -114,17 +105,137 @@
 }
 
 .cart,
-.log-out {
+.log-out,
+.hamburger {
   padding: 5px 10px;
   transition: background-color 0.2s;
   border-radius: 22px;
 }
 
 .cart:hover,
-.log-out:hover {
+.log-out:hover,
+.hamburger:hover {
   background-color: rgba(235, 235, 235, 1);
 }
 .welcome {
   color: rgb(112, 112, 112);
   font-weight: 400;
+}
+.hamburger {
+  font-size: 28px;
+  cursor: pointer;
+  z-index: 150;
+}
+.is-active {
+  background-color: rgba(235, 235, 235, 1);
+}
+.hamburger-menu-flyout {
+  left: -18px;
+  border: 1px solid #c5cbd5;
+  position: absolute;
+  top: 73px;
+  z-index: 100;
+  border-radius: 4px;
+}
+.hamburger-menu-flyout-list-wrapper {
+  position: relative;
+}
+.hamburger-list {
+  background-color: #fff;
+  box-sizing: border-box;
+  max-height: calc(100vh - 82px);
+  list-style: none;
+  margin: 0;
+  min-width: 355px;
+  overflow-y: scroll;
+  padding: 0;
+}
+.hamburger-list-item {
+  margin: 0 20px;
+  height: 50px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.hamburger-list a {
+  text-decoration: none;
+  color: black;
+}
+.c-overlay-backdrop {
+  z-index: 90;
+  height: 100%;
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  background-color: #1d252ca6;
+  width: 100vw;
+}
+.hamburger-menu-flyout-list-wrapper::before {
+  border-bottom-color: rgb(197, 203, 213);
+  border-bottom-style: solid;
+  border-bottom-width: 10px;
+  border-image-outset: 0;
+  border-image-repeat: stretch;
+  border-image-slice: 100%;
+  border-image-source: none;
+  border-image-width: 1;
+  border-left-color: rgba(0, 0, 0, 0);
+  border-left-style: solid;
+  border-left-width: 10px;
+  border-right-color: rgba(0, 0, 0, 0);
+  border-right-style: solid;
+  border-right-width: 10px;
+  border-top-color: rgba(0, 0, 0, 0);
+  border-top-style: solid;
+  border-top-width: 10px;
+  bottom: 0px;
+  box-sizing: border-box;
+  color: rgb(4, 12, 19);
+  content: " ";
+  font-size: 20px;
+  height: 20px;
+  left: 70px;
+  line-height: 26px;
+  pointer-events: none;
+  position: absolute;
+  top: -20px;
+  width: 20px;
+}
+.hamburger-menu-flyout-list-wrapper::after {
+  border-bottom-color: rgb(255, 255, 255);
+  border-bottom-style: solid;
+  border-bottom-width: 10px;
+  border-image-outset: 0;
+  border-image-repeat: stretch;
+  border-image-slice: 100%;
+  border-image-source: none;
+  border-image-width: 1;
+  border-left-color: rgba(0, 0, 0, 0);
+  border-left-style: solid;
+  border-left-width: 10px;
+  border-right-color: rgba(0, 0, 0, 0);
+  border-right-style: solid;
+  border-right-width: 10px;
+  border-top-color: rgba(0, 0, 0, 0);
+  border-top-style: solid;
+  border-top-width: 10px;
+  bottom: 0px;
+  box-sizing: border-box;
+  color: rgb(4, 12, 19);
+  content: " ";
+  font-size: 20px;
+  height: 20px;
+  left: 70px;
+  line-height: 26px;
+  pointer-events: none;
+  position: absolute;
+  top: -20px;
+  width: 20px;
+}
+.arrow-right {
+  font-size: 20px;
+  color: rgba(0, 0, 0, 0.3);
 }

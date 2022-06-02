@@ -5,12 +5,26 @@ import { useAuth } from "../../contexts/AuthContext";
 import { FiSearch, FiLogOut } from "react-icons/fi";
 import { BsFillPersonFill } from "react-icons/bs";
 import { AiOutlineShoppingCart } from "react-icons/ai";
+import { GiHamburgerMenu } from "react-icons/gi";
+import { RiArrowRightSLine } from "react-icons/ri";
 
 export default function Header() {
   const [error, setError] = useState("");
+  const [display, setDisplay] = useState("none");
+  const [searchTerm, setSearchTerm] = useState("");
   const { logout, currentUser } = useAuth();
   const history = useHistory();
-
+  const handleHamburgerClick = () => {
+    display === "block" ? setDisplay("none") : setDisplay("block");
+  };
+  const handleInputChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
+  const handleEnter = (e) => {
+    if (e.key === "Enter") {
+      history.push(`/${searchTerm}`);
+    }
+  };
   async function handleLogout() {
     setError("");
 
@@ -24,21 +38,98 @@ export default function Header() {
   }
   return (
     <div className="navbar">
+      <div className="hamburger-container">
+        <div className="hamburger-menu-flyout" style={{ display: display }}>
+          <div className="hamburger-menu-flyout-list-wrapper">
+            <div className="hamburger-list">
+              <Link to="/products">
+                <div
+                  className="hamburger-list-item"
+                  onClick={handleHamburgerClick}
+                >
+                  <div className="product-category">All Products</div>
+                  <div className="arrow-right">
+                    <RiArrowRightSLine />
+                  </div>
+                </div>
+              </Link>
+              <div className="hamburger-list-item" style={{ fontWeight: 700 }}>
+                Shop By Department
+              </div>
+              <Link to="/audio">
+                <div
+                  className="hamburger-list-item"
+                  onClick={handleHamburgerClick}
+                >
+                  <div className="product-category">Audio</div>
+                  <div className="arrow-right">
+                    <RiArrowRightSLine />
+                  </div>
+                </div>
+              </Link>
+              <Link to="/cellphones">
+                <div
+                  className="hamburger-list-item"
+                  onClick={handleHamburgerClick}
+                >
+                  <div className="product-category">Cellphones</div>
+                  <div className="arrow-right">
+                    <RiArrowRightSLine />
+                  </div>
+                </div>
+              </Link>
+              <Link to="/computers">
+                <div
+                  className="hamburger-list-item"
+                  onClick={handleHamburgerClick}
+                >
+                  <div className="product-category">Computers</div>
+                  <div className="arrow-right">
+                    <RiArrowRightSLine />
+                  </div>
+                </div>
+              </Link>
+              <Link to="/videogames">
+                <div
+                  className="hamburger-list-item"
+                  onClick={handleHamburgerClick}
+                >
+                  <div className="product-category">Video Games</div>
+                  <div className="arrow-right">
+                    <RiArrowRightSLine />
+                  </div>
+                </div>
+              </Link>
+            </div>
+          </div>
+        </div>
+        <div className="c-overlay-backdrop" style={{ display: display }}></div>
+      </div>
+      <div
+        onClick={handleHamburgerClick}
+        className={`hamburger ${display === "block" ? "is-active" : ""}`}
+      >
+        <GiHamburgerMenu />
+      </div>
       <div className="logo">
         <Link to="/">BuyNow</Link>
       </div>
       <div className="search-inner">
         <div className="search-bar">
-          <input type="search" />
+          <input
+            onChange={handleInputChange}
+            onKeyPress={handleEnter}
+            value={searchTerm}
+            type="search"
+          />
         </div>
         <div className="search-button">
           <button>
-            <FiSearch />
+            <Link to={`/${searchTerm}`}>
+              <FiSearch />
+            </Link>
           </button>
         </div>
-      </div>
-      <div className="navbar-products">
-        <Link to="/products">Products</Link>
       </div>
       <div className="user-container">
         <span className="face">
