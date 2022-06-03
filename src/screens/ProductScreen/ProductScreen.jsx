@@ -111,7 +111,7 @@ export default function ProductScreen(props) {
   const handleAddReview = () => {
     const review = {
       email: currentUser.multiFactor.user.email,
-      rating: "5",
+      rating: rating,
       description: description,
       title: title,
     };
