@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useRef, useEffect } from "react";
 import "./Header.css";
 import { Link, useHistory } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
@@ -12,13 +12,26 @@ import { AiFillHeart } from "react-icons/ai";
 export default function Header() {
   const { cartObj } = useContext(productsContext);
   const [error, setError] = useState("");
-  const [display, setDisplay] = useState("none");
+  const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const { logout, currentUser } = useAuth();
   const history = useHistory();
+  const ref = useRef(null);
   const handleHamburgerClick = () => {
-    display === "block" ? setDisplay("none") : setDisplay("block");
+    setIsHamburgerOpen(!isHamburgerOpen);
   };
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (ref.current && !ref.current.contains(event.target)) {
+        setIsHamburgerOpen(false);
+      }
+    };
+    document.addEventListener("click", handleClickOutside, true);
+    return () => {
+      document.removeEventListener("click", handleClickOutside, true);
+    };
+  }, []);
+
   const handleInputChange = (e) => {
     setSearchTerm(e.target.value);
   };
@@ -42,81 +55,84 @@ export default function Header() {
     <div className="navbar-container">
       <div className="navbar">
         <div className="hamburger-container">
-          <div className="hamburger-menu-flyout" style={{ display: display }}>
-            <div className="hamburger-menu-flyout-list-wrapper">
-              <div className="hamburger-list">
-                <Link to="/products">
-                  <div
-                    className="hamburger-list-item"
-                    onClick={handleHamburgerClick}
-                  >
-                    <div className="product-category">All Products</div>
-                    <div className="arrow-right">
-                      <RiArrowRightSLine />
+          {isHamburgerOpen ? (
+            <>
+              <div className="hamburger-menu-flyout" ref={ref}>
+                <div className="hamburger-menu-flyout-list-wrapper">
+                  <div className="hamburger-list">
+                    <Link to="/products">
+                      <div
+                        className="hamburger-list-item"
+                        onClick={handleHamburgerClick}
+                      >
+                        <div className="product-category">All Products</div>
+                        <div className="arrow-right">
+                          <RiArrowRightSLine />
+                        </div>
+                      </div>
+                    </Link>
+                    <div
+                      className="hamburger-list-item"
+                      style={{ fontWeight: 700 }}
+                    >
+                      Shop By Department
                     </div>
+                    <Link to="/audio">
+                      <div
+                        className="hamburger-list-item"
+                        onClick={handleHamburgerClick}
+                      >
+                        <div className="product-category">Audio</div>
+                        <div className="arrow-right">
+                          <RiArrowRightSLine />
+                        </div>
+                      </div>
+                    </Link>
+                    <Link to="/cellphones">
+                      <div
+                        className="hamburger-list-item"
+                        onClick={handleHamburgerClick}
+                      >
+                        <div className="product-category">Cellphones</div>
+                        <div className="arrow-right">
+                          <RiArrowRightSLine />
+                        </div>
+                      </div>
+                    </Link>
+                    <Link to="/computers">
+                      <div
+                        className="hamburger-list-item"
+                        onClick={handleHamburgerClick}
+                      >
+                        <div className="product-category">Computers</div>
+                        <div className="arrow-right">
+                          <RiArrowRightSLine />
+                        </div>
+                      </div>
+                    </Link>
+                    <Link to="/videogames">
+                      <div
+                        className="hamburger-list-item"
+                        onClick={handleHamburgerClick}
+                      >
+                        <div className="product-category">Video Games</div>
+                        <div className="arrow-right">
+                          <RiArrowRightSLine />
+                        </div>
+                      </div>
+                    </Link>
                   </div>
-                </Link>
-                <div
-                  className="hamburger-list-item"
-                  style={{ fontWeight: 700 }}
-                >
-                  Shop By Department
                 </div>
-                <Link to="/audio">
-                  <div
-                    className="hamburger-list-item"
-                    onClick={handleHamburgerClick}
-                  >
-                    <div className="product-category">Audio</div>
-                    <div className="arrow-right">
-                      <RiArrowRightSLine />
-                    </div>
-                  </div>
-                </Link>
-                <Link to="/cellphones">
-                  <div
-                    className="hamburger-list-item"
-                    onClick={handleHamburgerClick}
-                  >
-                    <div className="product-category">Cellphones</div>
-                    <div className="arrow-right">
-                      <RiArrowRightSLine />
-                    </div>
-                  </div>
-                </Link>
-                <Link to="/computers">
-                  <div
-                    className="hamburger-list-item"
-                    onClick={handleHamburgerClick}
-                  >
-                    <div className="product-category">Computers</div>
-                    <div className="arrow-right">
-                      <RiArrowRightSLine />
-                    </div>
-                  </div>
-                </Link>
-                <Link to="/videogames">
-                  <div
-                    className="hamburger-list-item"
-                    onClick={handleHamburgerClick}
-                  >
-                    <div className="product-category">Video Games</div>
-                    <div className="arrow-right">
-                      <RiArrowRightSLine />
-                    </div>
-                  </div>
-                </Link>
               </div>
-            </div>
-          </div>
-          <div
-            className="c-overlay-backdrop"
-            style={{ display: display }}
-          ></div>
+              <div className="c-overlay-backdrop"></div>
+            </>
+          ) : (
+            ""
+          )}
         </div>
         <div
           onClick={handleHamburgerClick}
-          className={`hamburger ${display === "block" ? "is-active" : ""}`}
+          className={`hamburger ${isHamburgerOpen === true ? "is-active" : ""}`}
         >
           <GiHamburgerMenu />
         </div>
