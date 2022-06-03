@@ -9,6 +9,7 @@ import "./ProductScreen.css";
 import getPageTitle from "../../utils/getPageTitle";
 import { AiFillHeart } from "react-icons/ai";
 import ReviewItem from "../../components/ReviewItem/ReviewItem";
+import { RiStarSFill } from "react-icons/ri";
 
 export default function ProductScreen(props) {
   const [loading, setLoading] = useState(true);
@@ -127,6 +128,9 @@ export default function ProductScreen(props) {
       setRating(1);
     })();
   };
+  const handleRatingStarClick = (e, value) => {
+    setRating(value);
+  };
   return (
     <div className="product-page-container">
       {loading ? (
@@ -199,6 +203,46 @@ export default function ProductScreen(props) {
                 {currentUser ? (
                   <>
                     <div className="add-review-title">Write a Review</div>
+                    <div className="add-review-rating">
+                      <span
+                        onClick={(e) => handleRatingStarClick(e, 1)}
+                        className="add-review-star star-active"
+                      >
+                        <RiStarSFill />
+                      </span>
+                      <span
+                        onClick={(e) => handleRatingStarClick(e, 2)}
+                        className={`add-review-star ${
+                          rating > 1 ? "star-active" : ""
+                        }`}
+                      >
+                        <RiStarSFill />
+                      </span>
+                      <span
+                        onClick={(e) => handleRatingStarClick(e, 3)}
+                        className={`add-review-star ${
+                          rating > 2 ? "star-active" : ""
+                        }`}
+                      >
+                        <RiStarSFill />
+                      </span>
+                      <span
+                        onClick={(e) => handleRatingStarClick(e, 4)}
+                        className={`add-review-star ${
+                          rating > 3 ? "star-active" : ""
+                        }`}
+                      >
+                        <RiStarSFill />
+                      </span>
+                      <span
+                        onClick={(e) => handleRatingStarClick(e, 5)}
+                        className={`add-review-star ${
+                          rating > 4 ? "star-active" : ""
+                        }`}
+                      >
+                        <RiStarSFill />
+                      </span>
+                    </div>
                     <input
                       type="text"
                       placeholder="Enter Title"

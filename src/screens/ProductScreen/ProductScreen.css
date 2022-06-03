@@ -159,3 +159,14 @@
   cursor: pointer;
   background-color: rgb(255, 224, 0);
 }
+.add-review-rating {
+  display: flex;
+  gap: 5px;
+}
+.add-review-star {
+  font-size: 24px;
+  cursor: pointer;
+}
+.star-active {
+  color: rgb(255, 153, 0);
+}
