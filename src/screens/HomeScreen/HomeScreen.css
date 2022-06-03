@@ -1,4 +1,27 @@
 .home-container {
+  height: calc(100vh - 83px);
+  background-color: #f7f7f7;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+.home-page {
   max-width: 1500px;
   margin: auto;
+}
+.home-page-title {
+  color: rgb(9, 20, 79);
+  font-size: 28px;
+  font-weight: 900;
+  font-family: "Montserrat", sans-serif;
+  display: flex;
+  justify-content: center;
+  padding: 50px 0;
+}
+.home-page-category-items {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.home-page-category-items a {
+  text-decoration: none;
 }

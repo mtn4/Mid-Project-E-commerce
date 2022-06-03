@@ -8,7 +8,6 @@ import ProductListScreen from "./screens/ProductListScreen/ProductListScreen";
 import ProductScreen from "./screens/ProductScreen/ProductScreen";
 import RegisterScreen from "./screens/RegisterScreen/RegisterScreen";
 import LoginScreen from "./screens/LoginScreen/LoginScreen";
-import ErrorScreen from "./screens/ErrorScreen/ErrorScreen";
 import CartScreen from "./screens/CartScreen/CartScreen";
 import OrderScreen from "./screens/OrderScreen/OrderScreen";
 import WishListScreen from "./screens/WishListScreen/WishListScreen";
@@ -31,7 +30,6 @@ export default function App() {
               <Route path="/orders" exact component={OrderScreen} />
               <Route path="/wishlist" exact component={WishListScreen} />
               <Route path={`/:name`} component={ProductListScreen} />
-              <Route component={ErrorScreen} />
             </Switch>
           </BrowserRouter>
         </AuthProvider>

@@ -20,7 +20,6 @@ export default function WishListScreen() {
       setProductsArr(data.data);
       const wishData = await wishlist.get();
       setWishListObj(wishData.data);
-      // console.log(wishData.data);
       setLoading(false);
     })();
   }, [setProductsArr, setWishListObj]);
