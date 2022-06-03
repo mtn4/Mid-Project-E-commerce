@@ -1,0 +1,38 @@
+.review-card {
+  border: 1px solid gainsboro;
+  padding: 20px;
+  margin: 20px 0;
+}
+.review-item-container {
+  margin: auto;
+  max-width: 700px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.review-poster,
+.review-rating-title {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.review-avatar {
+  font-size: 32px;
+}
+.review-poster {
+  font-size: 13px;
+  font-weight: 500;
+}
+.review-rating {
+  font-size: 18px;
+  color: rgb(255, 153, 0);
+}
+.review-title {
+  font-size: 14px;
+  font-weight: 700;
+}
+.review-description {
+  font-size: 18px;
+  padding-top: 20px;
+}

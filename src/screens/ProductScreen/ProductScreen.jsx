@@ -8,10 +8,15 @@ import CircleLoader from "react-spinners/CircleLoader";
 import "./ProductScreen.css";
 import getPageTitle from "../../utils/getPageTitle";
 import { AiFillHeart } from "react-icons/ai";
+import ReviewItem from "../../components/ReviewItem/ReviewItem";
 
 export default function ProductScreen(props) {
   const [loading, setLoading] = useState(true);
   const [quantity, setQuantity] = useState(1);
+  const [rating, setRating] = useState(1);
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+
   const {
     wishListObj,
     setWishListObj,
@@ -91,15 +96,46 @@ export default function ProductScreen(props) {
       })();
     }
   };
+  const renderReviewItems = () => {
+    return productsArr[productIndex].reviews.map((review, index) => (
+      <div key={index}>
+        <ReviewItem
+          email={review.email}
+          rating={review.rating}
+          description={review.description}
+          title={review.title}
+        />
+      </div>
+    ));
+  };
+  const handleAddReview = () => {
+    const review = {
+      email: currentUser.multiFactor.user.email,
+      rating: "5",
+      description: description,
+      title: title,
+    };
+    let newProductsArr = [...productsArr];
+    newProductsArr[productIndex].reviews.push(review);
+    setLoading(true);
+    (async () => {
+      await api.put(`${productIndex + 1}`, newProductsArr[productIndex]);
+      setProductsArr(newProductsArr);
+      setLoading(false);
+      setDescription("");
+      setTitle("");
+      setRating(1);
+    })();
+  };
   return (
     <div className="product-page-container">
-      <div className="product-page">
-        {loading ? (
-          <div className="spinner">
-            <CircleLoader color={"blue"} loading={true} size={200} />
-          </div>
-        ) : (
-          <>
+      {loading ? (
+        <div className="spinner">
+          <CircleLoader color={"blue"} loading={true} size={200} />
+        </div>
+      ) : (
+        <>
+          <div className="product-page">
             <div
               className="product-page-image"
               style={{
@@ -156,9 +192,39 @@ export default function ProductScreen(props) {
                 )}
               </div>
             </div>
-          </>
-        )}
-      </div>
+          </div>
+          <div className="product-reviews-container">
+            <div className="product-reviews-header">
+              <div className="product-add-review">
+                {currentUser ? (
+                  <>
+                    <div className="add-review-title">Write a Review</div>
+                    <input
+                      type="text"
+                      placeholder="Enter Title"
+                      onChange={(e) => setTitle(e.target.value)}
+                    />
+                    <textarea
+                      placeholder="Your Review"
+                      onChange={(e) => setDescription(e.target.value)}
+                    ></textarea>
+                    <button onClick={handleAddReview}>Submit Review</button>
+                  </>
+                ) : (
+                  <div className="add-review-title">
+                    Sign in to add a review
+                  </div>
+                )}
+              </div>
+            </div>
+            <div className="product-reviews">
+              {productsArr[productIndex].reviews.length
+                ? renderReviewItems()
+                : ""}
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 }
