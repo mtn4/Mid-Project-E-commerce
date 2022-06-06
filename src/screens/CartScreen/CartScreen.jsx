@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import { Link } from "react-router-dom";
 import { productsContext } from "../../contexts/productsContext";
 import { useAuth } from "../../contexts/AuthContext";
 import api from "../../apis/api";
@@ -107,7 +108,9 @@ export default function CartScreen() {
                 <span>{cartTotal}</span>
               </div>
               {currentUser ? (
-                <button className="checkout-btn">Checkout</button>
+                <Link to={`/checkout`}>
+                  <button className="checkout-btn">Checkout</button>
+                </Link>
               ) : (
                 <button className="sign-btn">Sign In To Checkout</button>
               )}

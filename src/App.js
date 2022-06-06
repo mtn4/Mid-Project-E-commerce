@@ -29,7 +29,7 @@ export default function App() {
               <Route path="/register" exact component={RegisterScreen} />
               <Route path="/cart" exact component={CartScreen} />
               <Route path="/profile" exact component={ProfileScreen} />
-              <Route path="/order" exact component={PlaceOrderScreen} />
+              <Route path="/checkout" exact component={PlaceOrderScreen} />
               <Route path="/wishlist" exact component={WishListScreen} />
               <Route path={`/:name`} component={ProductListScreen} />
             </Switch>
