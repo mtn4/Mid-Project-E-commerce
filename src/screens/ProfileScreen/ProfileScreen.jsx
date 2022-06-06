@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from "react";
-// import { Link } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 import { productsContext } from "../../contexts/productsContext";
 import api from "../../apis/api";
@@ -7,7 +6,6 @@ import orders from "../../apis/orders";
 import MadeOrderItem from "../../components/MadeOrderItem/MadeOrderItem";
 import CircleLoader from "react-spinners/CircleLoader";
 import "./ProfileScreen.css";
-// import generateOrderNumber from "../../utils/generateOrderNumber";
 
 export default function ProfileScreen() {
   const [loading, setLoading] = useState(true);
@@ -40,28 +38,6 @@ export default function ProfileScreen() {
   };
 
   const renderMadeOrders = () => {
-    // const userEmail = currentUser.multiFactor.user.email;
-    // const order = {
-    //   items: { 10: 1, 14: 3, 9: 2 },
-    //   total: "$699.99",
-    //   name: "Qa ZX",
-    //   address: "St T",
-    //   city: "Chicago",
-    //   postal: "74952",
-    //   country: "USA",
-    //   phone: "050-634218",
-    //   orderId: generateOrderNumber(),
-    // };
-    // if (ordersObj[0].orders[userEmail].length < 2) {
-    //   let newOrdersObj = [...ordersObj];
-    //   newOrdersObj[0].orders[userEmail].push(order);
-    //   setLoading(true);
-    //   (async () => {
-    //     await orders.put("1", newOrdersObj[0]);
-    //     setOrdersObj(newOrdersObj);
-    //     setLoading(false);
-    //   })();
-    // }
     const userEmail = currentUser.multiFactor.user.email;
     if (ordersObj[0].orders[userEmail].length === 0) {
       return (

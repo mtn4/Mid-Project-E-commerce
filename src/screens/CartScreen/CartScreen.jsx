@@ -62,24 +62,22 @@ export default function CartScreen() {
   }, [cartObj]);
 
   const renderCartProducts = () => {
-    return Object.keys(cartObj).map((key, index) => {
-      if (key === "total") {
-        return <div key={key}></div>;
-      } else {
-        return (
-          <div key={key}>
-            <CartProduct
-              id={productsArr[key].id}
-              img={productsArr[key].img}
-              name={productsArr[key].name}
-              brand={productsArr[key].brand}
-              price={productsArr[key].price}
-              qty={cartObj[key]}
-              onClick={handleRemove}
-            />
-          </div>
-        );
-      }
+    let cartObjToRender = { ...cartObj };
+    delete cartObjToRender.total;
+    return Object.keys(cartObjToRender).map((key, index) => {
+      return (
+        <div key={key}>
+          <CartProduct
+            id={productsArr[key].id}
+            img={productsArr[key].img}
+            name={productsArr[key].name}
+            brand={productsArr[key].brand}
+            price={productsArr[key].price}
+            qty={cartObj[key]}
+            onClick={handleRemove}
+          />
+        </div>
+      );
     });
   };
   return (
