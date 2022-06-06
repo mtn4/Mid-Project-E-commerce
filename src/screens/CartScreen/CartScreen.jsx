@@ -52,7 +52,6 @@ export default function CartScreen() {
     };
     delete newCartObj[id - 1];
     setCartObj(newCartObj);
-    console.log(cartObj.total);
     emptyCart.current = true;
   };
 
