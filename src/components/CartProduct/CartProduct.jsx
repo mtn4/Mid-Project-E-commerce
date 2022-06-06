@@ -1,9 +1,25 @@
-import React from "react";
+import React, { useState, useContext } from "react";
+import { productsContext } from "../../contexts/productsContext";
 import { Link } from "react-router-dom";
 import { BsFillTrashFill } from "react-icons/bs";
 import "./CartProduct.css";
 
 export default function CartProduct(props) {
+  const { cartObj, setCartObj } = useContext(productsContext);
+  const [quantity, setQuantity] = useState(props.qty);
+  let productIndex = props.id - 1;
+  const changeCartQuantity = (e) => {
+    const quantity = e.target.value.replace(/\D/g, "");
+    setQuantity(quantity);
+    let total = cartObj.total - cartObj[productIndex];
+    if (quantity > 0) {
+      setCartObj({
+        ...cartObj,
+        [productIndex]: parseInt(quantity),
+        total: total + parseInt(quantity),
+      });
+    }
+  };
   const displayPrice = () => {
     return (
       "$" +
@@ -29,16 +45,16 @@ export default function CartProduct(props) {
         </Link>
       </div>
       <div className="cart-qty-price">
-        <div className="qty-remove">
-          <span>Quantity: {props.qty}</span>
-          {/* <button id={props.id} onClick={props.onClick}>
-            Remove
-          </button> */}
-          <BsFillTrashFill
-            size={18}
-            onClick={(e) => props.onClick(e, props.id)}
-          />
-        </div>
+        <input
+          type="text"
+          maxLength="3"
+          value={quantity}
+          onChange={changeCartQuantity}
+        ></input>
+        <BsFillTrashFill
+          size={18}
+          onClick={(e) => props.onClick(e, props.id)}
+        />
         <div className="cart-item-price">{displayPrice()}</div>
       </div>
     </div>

@@ -20,15 +20,21 @@
 .cart-qty-price {
   display: flex;
   align-items: center;
-  gap: 60px;
+  gap: 40px;
 }
 .cart-item-price {
   font-size: 15px;
   font-weight: 700;
 }
-.qty-remove {
-  display: flex;
-  gap: 30px;
+.cart-qty-price input {
+  text-align: center;
+  width: 55px;
+  background: #fff;
+  border: 1px solid #d9d9d9;
+  border-radius: 3px;
   font-size: 13px;
-  align-items: center;
+  height: 32px;
+  margin: 0;
+  padding: 7px 1em;
+  vertical-align: middle;
 }
