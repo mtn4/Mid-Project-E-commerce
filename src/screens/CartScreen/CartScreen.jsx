@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import { Link } from "react-router-dom";
 import { productsContext } from "../../contexts/productsContext";
 import { useAuth } from "../../contexts/AuthContext";
@@ -9,10 +9,16 @@ import "./CartScreen.css";
 
 export default function CartScreen() {
   const [loading, setLoading] = useState(true);
-  const [cartTotal, setCartTotal] = useState("$0.00");
+  const emptyCart = useRef(false);
   const { currentUser } = useAuth();
-  const { productsArr, setProductsArr, cartObj, setCartObj } =
-    useContext(productsContext);
+  const {
+    productsArr,
+    setProductsArr,
+    cartObj,
+    setCartObj,
+    cartTotal,
+    setCartTotal,
+  } = useContext(productsContext);
   useEffect(() => {
     setLoading(true);
     (async () => {
@@ -37,7 +43,7 @@ export default function CartScreen() {
       }
     }
     setCartTotal("$" + total.toFixed(2));
-  }, [cartObj, loading, productsArr]);
+  }, [cartObj, loading, productsArr, setCartTotal]);
 
   const handleRemove = (e, id) => {
     let newCartObj = {
@@ -46,10 +52,12 @@ export default function CartScreen() {
     };
     delete newCartObj[id - 1];
     setCartObj(newCartObj);
+    console.log(cartObj.total);
+    emptyCart.current = true;
   };
 
   useEffect(() => {
-    if (cartObj.total > 0)
+    if (cartObj.total > 0 || emptyCart.current)
       localStorage.setItem("cartObj", JSON.stringify(cartObj));
   }, [cartObj]);
 
@@ -109,7 +117,12 @@ export default function CartScreen() {
               </div>
               {currentUser ? (
                 <Link to={`/checkout`}>
-                  <button className="checkout-btn">Checkout</button>
+                  <button
+                    className="checkout-btn"
+                    disabled={cartObj.total ? false : true}
+                  >
+                    Checkout
+                  </button>
                 </Link>
               ) : (
                 <button className="sign-btn">Sign In To Checkout</button>

@@ -4,13 +4,15 @@ import { productsContext } from "../../contexts/productsContext";
 import orders from "../../apis/orders";
 import CircleLoader from "react-spinners/CircleLoader";
 import generateOrderNumber from "../../utils/generateOrderNumber";
+import { useHistory } from "react-router-dom";
 import "./PlaceOrderScreen.css";
 export default function PlaceOrderScreen() {
-  const { ordersObj, setOrdersObj, cartObj, setCartObj } =
+  const { ordersObj, setOrdersObj, cartObj, setCartObj, cartTotal } =
     useContext(productsContext);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [orderFinished, setOrderFinished] = useState(false);
   const { currentUser } = useAuth();
+  const history = useHistory();
   useEffect(() => {
     setLoading(true);
     (async () => {
@@ -21,9 +23,6 @@ export default function PlaceOrderScreen() {
   }, [setOrdersObj]);
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log(e.target[5].value);
-    // console.log(cartObj);
-
     let orderCart = {
       ...cartObj,
     };
@@ -31,7 +30,7 @@ export default function PlaceOrderScreen() {
     const userEmail = currentUser.multiFactor.user.email;
     const order = {
       items: orderCart,
-      total: "$888",
+      total: cartTotal,
       name: e.target[0].value,
       address: e.target[1].value,
       city: e.target[2].value,
@@ -46,9 +45,17 @@ export default function PlaceOrderScreen() {
     (async () => {
       await orders.put("1", newOrdersObj[0]);
       setOrdersObj(newOrdersObj);
+      setCartObj({ total: 0 });
+      setOrderFinished(true);
       setLoading(false);
     })();
   };
+  useEffect(() => {
+    if (orderFinished) {
+      localStorage.setItem("cartObj", JSON.stringify(cartObj));
+      history.push("/profile");
+    }
+  }, [cartObj, orderFinished, history]);
   return (
     <div className="place-order-container">
       <div className="place-order">
@@ -96,7 +103,6 @@ export default function PlaceOrderScreen() {
                   >
                     Place Order
                   </button>
-                  {error && <div className="login-error">{error}</div>}
                 </form>
               </div>
             ) : (

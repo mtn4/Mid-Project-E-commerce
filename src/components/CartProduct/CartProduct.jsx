@@ -52,6 +52,7 @@ export default function CartProduct(props) {
           onChange={changeCartQuantity}
         ></input>
         <BsFillTrashFill
+          style={{ cursor: "pointer" }}
           size={18}
           onClick={(e) => props.onClick(e, props.id)}
         />
