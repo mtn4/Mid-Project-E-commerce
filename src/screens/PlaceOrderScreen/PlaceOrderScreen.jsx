@@ -7,7 +7,7 @@ import generateOrderNumber from "../../utils/generateOrderNumber";
 import { useHistory } from "react-router-dom";
 import "./PlaceOrderScreen.css";
 export default function PlaceOrderScreen() {
-  const { ordersObj, setOrdersObj, cartObj, setCartObj, cartTotal } =
+  const { ordersObj, setOrdersObj, cartObj, setCartObj } =
     useContext(productsContext);
   const [loading, setLoading] = useState(false);
   const [orderFinished, setOrderFinished] = useState(false);
@@ -28,9 +28,10 @@ export default function PlaceOrderScreen() {
     };
     delete orderCart.total;
     const userEmail = currentUser.multiFactor.user.email;
+    const cartFinalOrderTotal = JSON.parse(localStorage.getItem("cartTotal"));
     const order = {
       items: orderCart,
-      total: cartTotal,
+      total: cartFinalOrderTotal,
       name: e.target[0].value,
       address: e.target[1].value,
       city: e.target[2].value,
@@ -53,6 +54,7 @@ export default function PlaceOrderScreen() {
   useEffect(() => {
     if (orderFinished) {
       localStorage.setItem("cartObj", JSON.stringify(cartObj));
+      localStorage.setItem("cartTotal", JSON.stringify("$0.00"));
       history.push("/profile");
     }
   }, [cartObj, orderFinished, history]);

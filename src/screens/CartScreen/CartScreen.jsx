@@ -43,7 +43,8 @@ export default function CartScreen() {
       }
     }
     setCartTotal("$" + total.toFixed(2));
-  }, [cartObj, loading, productsArr, setCartTotal]);
+    localStorage.setItem("cartTotal", JSON.stringify(cartTotal));
+  }, [cartObj, loading, productsArr, setCartTotal, cartTotal]);
 
   const handleRemove = (e, id) => {
     let newCartObj = {

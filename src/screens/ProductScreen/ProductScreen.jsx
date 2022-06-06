@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { productsContext } from "../../contexts/productsContext";
 import { useAuth } from "../../contexts/AuthContext";
 import api from "../../apis/api";
@@ -17,7 +17,8 @@ export default function ProductScreen(props) {
   const [rating, setRating] = useState(1);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-
+  const [addedToCart, setAddedToCart] = useState(false);
+  const history = useHistory();
   const {
     wishListObj,
     setWishListObj,
@@ -53,6 +54,7 @@ export default function ProductScreen(props) {
         total: cartObj.total + parseInt(quantity),
       });
       setQuantity(1);
+      setAddedToCart(true);
     } else {
       setCartObj({
         ...cartObj,
@@ -60,6 +62,7 @@ export default function ProductScreen(props) {
         total: cartObj.total + parseInt(quantity),
       });
       setQuantity(1);
+      setAddedToCart(true);
     }
   };
   const handleAddWishlist = () => {
@@ -135,6 +138,11 @@ export default function ProductScreen(props) {
     const userEmail = currentUser.multiFactor.user.email;
     return wishListObj[0].wishlist[userEmail].includes(productIndex);
   };
+  useEffect(() => {
+    if (addedToCart) {
+      history.push("/cart");
+    }
+  }, [addedToCart, history]);
   return (
     <div className="product-page-container">
       {loading ? (
