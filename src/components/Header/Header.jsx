@@ -165,7 +165,9 @@ export default function Header() {
             <div className="user">
               {currentUser ? (
                 <>
-                  <Link to="/orders">{currentUser.multiFactor.user.email}</Link>
+                  <Link to="/profile">
+                    {currentUser.multiFactor.user.email}
+                  </Link>
                 </>
               ) : (
                 <Link to="/login">Sign In / Register</Link>

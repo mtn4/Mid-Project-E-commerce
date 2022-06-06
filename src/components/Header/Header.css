@@ -131,7 +131,7 @@
   background-color: rgba(235, 235, 235, 1);
 }
 .hamburger-menu-flyout {
-  left: -18px;
+  left: 40px;
   border: 1px solid #c5cbd5;
   position: absolute;
   top: 73px;
@@ -147,7 +147,7 @@
   max-height: calc(100vh - 82px);
   list-style: none;
   margin: 0;
-  min-width: 355px;
+  min-width: 250px;
   overflow-y: scroll;
   padding: 0;
 }
@@ -198,7 +198,7 @@
   content: " ";
   font-size: 20px;
   height: 20px;
-  left: 70px;
+  left: 13px;
   line-height: 26px;
   pointer-events: none;
   position: absolute;
@@ -229,7 +229,7 @@
   content: " ";
   font-size: 20px;
   height: 20px;
-  left: 70px;
+  left: 13px;
   line-height: 26px;
   pointer-events: none;
   position: absolute;

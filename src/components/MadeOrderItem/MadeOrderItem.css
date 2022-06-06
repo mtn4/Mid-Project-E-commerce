@@ -1,0 +1,70 @@
+.made-order-container {
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  margin: 30px;
+}
+.made-order-top {
+  background-color: #f4f5f7;
+  padding: 20px 50px;
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid #e0e6ef;
+}
+.made-order-bottom {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid #e0e6ef;
+}
+.made-order-address {
+  font-size: 13px;
+  font-weight: 400;
+}
+.made-order-price-id {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 14px;
+  font-weight: 500;
+}
+.made-order-ship-to {
+  font-size: 18px;
+  font-weight: 700;
+}
+.made-order-total {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.made-order-item-image {
+  height: 100px;
+  width: 100px;
+}
+.made-order-item {
+  border-bottom: 1px solid #e0e6ef;
+  background-color: white;
+  padding: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.made-order-img-name a,
+.made-order-qty-price {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  text-decoration: none;
+}
+.made-order-item-name {
+  font-size: 16px;
+  font-weight: 400;
+}
+.made-order-item-qty {
+  font-size: 14px;
+  font-weight: 400;
+}
+.made-order-item-price {
+  font-size: 18px;
+  font-weight: 600;
+}

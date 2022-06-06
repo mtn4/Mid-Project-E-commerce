@@ -27,7 +27,7 @@ const getPageTitle = (str) => {
         title = "Video Games";
         break;
       default:
-        title = paramTitle(str);
+        title = "Search Results: " + paramTitle(str);
         break;
     }
   }

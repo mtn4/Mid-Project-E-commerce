@@ -131,6 +131,10 @@ export default function ProductScreen(props) {
   const handleRatingStarClick = (e, value) => {
     setRating(value);
   };
+  const wishlistLiked = () => {
+    const userEmail = currentUser.multiFactor.user.email;
+    return wishListObj[0].wishlist[userEmail].includes(productIndex);
+  };
   return (
     <div className="product-page-container">
       {loading ? (
@@ -188,7 +192,12 @@ export default function ProductScreen(props) {
                   <button onClick={handleAddToCart}>Add to Cart</button>
                 </div>
                 {currentUser ? (
-                  <div className="add-wishlist-btn" onClick={handleAddWishlist}>
+                  <div
+                    className={`add-wishlist-btn ${
+                      wishlistLiked() ? "liked" : ""
+                    }`}
+                    onClick={handleAddWishlist}
+                  >
                     <AiFillHeart />
                   </div>
                 ) : (

@@ -35,15 +35,15 @@ export default function CartScreen() {
         }
       }
     }
-    setCartTotal("$" + Math.floor(total) + ".00");
+    setCartTotal("$" + total.toFixed(2));
   }, [cartObj, loading, productsArr]);
 
-  const handleRemove = (e) => {
+  const handleRemove = (e, id) => {
     let newCartObj = {
       ...cartObj,
-      total: cartObj.total - cartObj[e.target.id - 1],
+      total: cartObj.total - cartObj[id - 1],
     };
-    delete newCartObj[e.target.id - 1];
+    delete newCartObj[id - 1];
     setCartObj(newCartObj);
   };
 

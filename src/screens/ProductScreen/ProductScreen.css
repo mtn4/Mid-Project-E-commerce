@@ -94,8 +94,8 @@
   background-color: rgb(196, 196, 196);
 }
 .product-page-price input {
-  height: 20px;
-  width: 50px;
+  height: 30px;
+  width: 40px;
 }
 .quantity {
   font-size: 15px;
@@ -109,8 +109,11 @@
 }
 .add-wishlist-btn {
   font-size: 60px;
-  color: red;
+  color: black;
   cursor: pointer;
+}
+.liked {
+  color: red;
 }
 .product-reviews-header {
   border: 1px solid gainsboro;
