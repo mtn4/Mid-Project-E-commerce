@@ -10,6 +10,7 @@
 .product-image {
   height: 30vh;
   width: 20vw;
+  margin: auto;
 }
 .brand {
   color: gray;
@@ -26,4 +27,10 @@
 }
 .price {
   font-size: 24px;
+}
+@media only screen and (orientation: portrait) {
+  .product-image {
+    height: 30vh;
+    width: 40vw;
+  }
 }

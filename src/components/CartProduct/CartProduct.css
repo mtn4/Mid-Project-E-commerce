@@ -38,3 +38,22 @@
   padding: 7px 1em;
   vertical-align: middle;
 }
+@media only screen and (orientation: portrait) {
+  .cart-item-container {
+    padding: 5px;
+  }
+  .cart-item-image {
+    display: none;
+  }
+  .cart-qty-price {
+    gap: 10px;
+  }
+}
+@media only screen and (max-device-width: 1024px) and (orientation: landscape) {
+  .cart-item-container {
+    padding: 5px;
+  }
+  .cart-qty-price {
+    gap: 10px;
+  }
+}

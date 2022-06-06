@@ -68,3 +68,33 @@
   font-size: 18px;
   font-weight: 600;
 }
+@media only screen and (orientation: portrait) {
+  .made-order-container {
+    margin: 5px;
+  }
+  .made-order-top {
+    padding: 10px 10px;
+    gap: 20px;
+    flex-direction: column;
+  }
+  .made-order-item {
+    padding: 10px;
+  }
+  .made-order-item-image {
+    display: none;
+  }
+  .made-order-item-qty {
+    font-size: 12px;
+  }
+  .made-order-qty-price {
+    gap: 10px;
+  }
+  .made-order-item-price {
+    font-size: 14px;
+  }
+}
+@media only screen and (max-device-width: 1024px) and (orientation: landscape) {
+  .made-order-container {
+    margin: 5px;
+  }
+}

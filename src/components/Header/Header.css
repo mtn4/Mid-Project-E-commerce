@@ -252,3 +252,27 @@
   color: white;
   text-align: center;
 }
+@media only screen and (orientation: portrait) {
+  .navbar {
+    padding: 0;
+    gap: 5px;
+    height: fit-content;
+    flex-wrap: wrap;
+  }
+  .logo a {
+    font-size: 24px;
+    text-shadow: none;
+  }
+}
+@media only screen and (max-device-width: 1024px) and (orientation: landscape) {
+  .navbar {
+    padding: 0;
+    gap: 5px;
+    height: fit-content;
+    flex-wrap: wrap;
+  }
+  .logo a {
+    font-size: 24px;
+    text-shadow: none;
+  }
+}

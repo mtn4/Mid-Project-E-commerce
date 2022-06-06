@@ -66,3 +66,19 @@
   background-color: rgb(255, 0, 0);
   color: white;
 }
+@media only screen and (orientation: portrait) {
+  .cart-page {
+    flex-direction: column;
+  }
+  .cart-right {
+    width: 100%;
+  }
+}
+@media only screen and (max-device-width: 1024px) and (orientation: landscape) {
+  .cart-page {
+    flex-direction: column;
+  }
+  .cart-right {
+    width: 100%;
+  }
+}

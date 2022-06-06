@@ -17,3 +17,17 @@
   text-decoration: none;
   padding: 20px;
 }
+@media only screen and (orientation: portrait) {
+  .category-item {
+    height: 40vh;
+    width: 90vw;
+    font-size: 10vw;
+  }
+}
+@media only screen and (max-device-width: 1024px) and (orientation: landscape) {
+  .category-item {
+    height: 40vh;
+    width: 80vw;
+    font-size: 10vw;
+  }
+}

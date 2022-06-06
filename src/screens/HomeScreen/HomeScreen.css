@@ -1,5 +1,5 @@
 .home-container {
-  height: calc(100vh - 83px);
+  min-height: 80vh;
   background-color: #f7f7f7;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
@@ -24,4 +24,25 @@
 }
 .home-page-category-items a {
   text-decoration: none;
+}
+@media only screen and (orientation: portrait) {
+  .home-page-title {
+    padding: 15px 0;
+  }
+  .home-page-category-items {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin: 20px 0;
+  }
+}
+@media only screen and (max-device-width: 1024px) and (orientation: landscape) {
+  .home-page-title {
+    padding: 15px 0;
+  }
+  .home-page-category-items {
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0;
+  }
 }

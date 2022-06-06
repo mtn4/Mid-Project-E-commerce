@@ -18,7 +18,6 @@
 }
 .place-order-form-container {
   width: 500px;
-  /* padding: 25px; */
   margin: auto;
   border: 1px solid #bec4ce;
   border-radius: 10px;
@@ -54,4 +53,9 @@
   display: flex;
   flex-direction: column;
   gap: 5px;
+}
+@media only screen and (orientation: portrait) {
+  .place-order-form-container {
+    width: 100%;
+  }
 }
