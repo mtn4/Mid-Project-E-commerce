@@ -41,6 +41,9 @@ export default function PlaceOrderScreen() {
       orderId: generateOrderNumber(),
     };
     let newOrdersObj = [...ordersObj];
+    if (!newOrdersObj[0].orders[userEmail]) {
+      newOrdersObj[0].orders[userEmail] = [];
+    }
     newOrdersObj[0].orders[userEmail].push(order);
     setLoading(true);
     (async () => {

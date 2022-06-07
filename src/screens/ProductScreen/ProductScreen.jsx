@@ -136,7 +136,10 @@ export default function ProductScreen(props) {
   };
   const wishlistLiked = () => {
     const userEmail = currentUser.multiFactor.user.email;
-    return wishListObj[0].wishlist[userEmail].includes(productIndex);
+    return (
+      wishListObj[0].wishlist[userEmail] &&
+      wishListObj[0].wishlist[userEmail].includes(productIndex)
+    );
   };
   useEffect(() => {
     if (addedToCart) {
