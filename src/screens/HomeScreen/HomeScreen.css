@@ -1,5 +1,5 @@
 .home-container {
-  min-height: 80vh;
+  min-height: fit-content;
   background-color: #f7f7f7;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
@@ -21,6 +21,7 @@
   gap: 20px;
   flex-wrap: wrap;
   justify-content: center;
+  margin: 20px 0;
 }
 .home-page-category-items a {
   text-decoration: none;
@@ -33,7 +34,6 @@
     flex-direction: column;
     align-items: center;
     gap: 15px;
-    margin: 20px 0;
   }
 }
 @media only screen and (max-device-width: 1024px) and (orientation: landscape) {
@@ -43,6 +43,5 @@
   .home-page-category-items {
     flex-direction: column;
     align-items: center;
-    margin: 20px 0;
   }
 }

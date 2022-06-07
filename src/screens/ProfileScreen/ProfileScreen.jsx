@@ -39,7 +39,10 @@ export default function ProfileScreen() {
 
   const renderMadeOrders = () => {
     const userEmail = currentUser.multiFactor.user.email;
-    if (ordersObj[0].orders[userEmail].length === 0) {
+    if (
+      !ordersObj[0].orders[userEmail] ||
+      ordersObj[0].orders[userEmail].length === 0
+    ) {
       return (
         <div className="profile-screen-sub-title">
           There are no orders to display!
