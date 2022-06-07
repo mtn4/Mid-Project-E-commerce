@@ -80,7 +80,7 @@ export default function PlaceOrderScreen() {
             <div className="place-order-title">
               {currentUser ? "Checkout" : "Please Log In To Checkout"}
             </div>
-            {currentUser ? (
+            {currentUser && cartObj.total ? (
               <div className="place-order-form-container">
                 <div className="form-title">Shipping Address</div>
                 <form onSubmit={handleSubmit}>
