@@ -11,6 +11,7 @@ export default function PlaceOrderScreen() {
     useContext(productsContext);
   const [loading, setLoading] = useState(false);
   const [orderFinished, setOrderFinished] = useState(false);
+  const [error, setError] = useState(false);
   const { currentUser } = useAuth();
   const history = useHistory();
   useEffect(() => {
@@ -23,6 +24,12 @@ export default function PlaceOrderScreen() {
   }, [setOrdersObj]);
   const handleSubmit = (e) => {
     e.preventDefault();
+    for (let i = 0; i < 6; i++) {
+      if (e.target[i].value.trim() === "") {
+        setError(true);
+        return;
+      }
+    }
     let orderCart = {
       ...cartObj,
     };
@@ -77,6 +84,11 @@ export default function PlaceOrderScreen() {
               <div className="place-order-form-container">
                 <div className="form-title">Shipping Address</div>
                 <form onSubmit={handleSubmit}>
+                  <div
+                    style={{ color: "red", display: error ? "block" : "none" }}
+                  >
+                    Please make sure you fill out all address fields.
+                  </div>
                   <div>
                     <label>Full Name</label>
                     <input type="text" />
