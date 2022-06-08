@@ -50,6 +50,7 @@ export default function MadeOrderItem(props) {
             {props.city}, {props.postal}
           </div>
           <div>{props.country}</div>
+          <div>{props.phone}</div>
         </div>
         <div className="made-order-price-id">
           <div>
