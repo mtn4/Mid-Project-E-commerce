@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Grape+Nuts&family=Karla:wght@200;300;400;500;600;700&display=swap");
-
+@import url("https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap");
 .category-item {
   height: 33vh;
   width: 34vw;
@@ -9,11 +9,11 @@
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  font-size: 5vw;
+  font-size: 3vw;
   font-weight: 700;
   color: #fd004c;
   text-shadow: 1px 3px 2px rgba(0, 0, 0, 1);
-  font-family: "Grape Nuts", cursive;
+  font-family: "Fredoka One", cursive;
   text-decoration: none;
   padding: 20px;
 }
@@ -21,13 +21,13 @@
   .category-item {
     height: 40vh;
     width: 90vw;
-    font-size: 10vw;
+    font-size: 12vw;
   }
 }
 @media only screen and (max-device-width: 1024px) and (orientation: landscape) {
   .category-item {
-    height: 40vh;
+    height: 50vh;
     width: 80vw;
-    font-size: 10vw;
+    font-size: 7vw;
   }
 }
