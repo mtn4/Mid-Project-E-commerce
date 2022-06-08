@@ -173,6 +173,13 @@
 .star-active {
   color: rgb(255, 153, 0);
 }
+.product-page-reviews-summary {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  font-size: 14px;
+  line-height: 15.6px;
+}
 @media only screen and (orientation: portrait) {
   .product-page {
     flex-direction: column;

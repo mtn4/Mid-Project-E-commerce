@@ -146,6 +146,29 @@ export default function ProductScreen(props) {
       history.push("/cart");
     }
   }, [addedToCart, history]);
+  const calcProductAvgRating = () => {
+    let avgScore = 0;
+    if (productsArr[productIndex].reviews.length > 0) {
+      for (let i = 0; i < productsArr[productIndex].reviews.length; i++) {
+        avgScore += productsArr[productIndex].reviews[i].rating;
+      }
+      avgScore = avgScore / productsArr[productIndex].reviews.length;
+    }
+    return avgScore.toFixed(1);
+  };
+  const renderReviewsSummary = () => {
+    return Array.apply(null, { length: 5 }).map((e, i) => (
+      <span
+        style={{ cursor: "auto" }}
+        className={`add-review-star ${
+          i + 1 <= Math.round(calcProductAvgRating()) ? "star-active" : ""
+        }`}
+        key={i}
+      >
+        <RiStarSFill />
+      </span>
+    ));
+  };
   return (
     <div className="product-page-container">
       {loading ? (
@@ -180,6 +203,15 @@ export default function ProductScreen(props) {
                 <div className="product-page-model">
                   <span>Model: </span>
                   {productsArr[productIndex].model}
+                </div>
+                <div className="product-page-reviews-summary">
+                  <span>{renderReviewsSummary()}</span>
+                  <span style={{ fontWeight: 700 }}>
+                    {calcProductAvgRating()}
+                  </span>
+                  <span>
+                    ({productsArr[productIndex].reviews.length} Reviews)
+                  </span>
                 </div>
               </div>
 
